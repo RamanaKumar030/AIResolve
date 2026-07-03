@@ -54,7 +54,11 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
 
   const logout = async () => {
     localStorage.removeItem("airesolve_token")
-    await supabase.auth.signOut()
+    try {
+      if (supabase?.auth) await supabase.auth.signOut()
+    } catch {
+      // supabase not available
+    }
     setUser(null)
   }
 

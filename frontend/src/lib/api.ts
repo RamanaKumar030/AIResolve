@@ -4,10 +4,14 @@ async function getToken(): Promise<string | null> {
   const stored = localStorage.getItem("airesolve_token")
   if (stored) return stored
 
-  const { data } = await import("./supabase").then((m) =>
-    m.supabase.auth.getSession()
-  )
-  return data.session?.access_token || null
+  try {
+    const mod = await import("./supabase")
+    if (!mod.supabase?.auth) return null
+    const { data } = await mod.supabase.auth.getSession()
+    return data.session?.access_token || null
+  } catch {
+    return null
+  }
 }
 
 async function request<T>(
