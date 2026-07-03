@@ -21,7 +21,7 @@ class Settings(BaseSettings):
     jwt_algorithm: str = "HS256"
     jwt_expiration_minutes: int = 60
 
-    cors_origins: str = "http://localhost:5173,https://airesolve.onrender.com,https://ai-resolve-shy8.vercel.app"
+    cors_origins: str = "http://localhost:5173,https://airesolve.onrender.com,https://ai-resolve-shy8.vercel.app,https://ai-resolve-e1qu.vercel.app"
     cors_allow_credentials: bool = True
     cors_allow_methods: str = "*"
     cors_allow_headers: str = "*"
